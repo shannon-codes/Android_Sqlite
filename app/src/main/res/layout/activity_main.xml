@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_marginStart="8dp"
+    android:layout_marginTop="8dp"
+    android:layout_marginEnd="8dp"
+    android:layout_marginBottom="8dp"
+    android:orientation="vertical"
+    tools:context=".MainActivity">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/myToolbar"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="?attr/colorPrimary"
+        android:minHeight="?attr/actionBarSize"
+        android:theme="?attr/actionBarTheme"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:title="@string/app_name" />
+
+    <TableLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TableRow>
+
+
+            <EditText
+                android:id="@+id/etPlayerName"
+                android:layout_width="335dp"
+                android:layout_height="wrap_content"
+                android:hint="Player Name" />
+        </TableRow>
+
+        <TableRow>
+
+            <RadioGroup
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" >
+
+                <RadioButton
+                    android:id="@+id/radio_goalie"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Goalie"
+                    android:onClick="onRadioButtonClicked"/>
+
+                <RadioButton
+                    android:id="@+id/radio_defence"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Defence"
+                    android:onClick="onRadioButtonClicked"/>
+
+                <RadioButton
+                    android:id="@+id/radio_forward"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Forward"
+                    android:onClick="onRadioButtonClicked"/>
+            </RadioGroup>
+
+        </TableRow>
+
+        <TableRow>
+
+
+            <EditText
+                android:id="@+id/etGoals"
+                android:layout_width="200dp"
+                android:layout_height="wrap_content"
+                android:hint="Number of Goals"/>
+        </TableRow>
+
+    </TableLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40sp"
+        android:orientation="horizontal"
+        android:layout_gravity="center">
+
+        <Button
+            android:id="@+id/btnSave"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="Save"
+            android:layout_weight="1"
+            android:onClick="saveRecord"/>
+        <Button
+            android:id="@+id/btnView"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="View All"
+            android:layout_weight="1"
+            android:onClick="viewRecord"/>
+
+
+    </LinearLayout>
+
+</LinearLayout>

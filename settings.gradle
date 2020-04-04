@@ -1,0 +1,2 @@
+include ':app'
+rootProject.name='Won_Lim_A2'
