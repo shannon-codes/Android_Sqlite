@@ -10,6 +10,7 @@ import android.app.AlertDialog
 import android.widget.RadioButton
 import android.view.View
 import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.activity_list.listView
 import java.util.*
 
 class MainActivity : AppCompatActivity() {
@@ -99,5 +100,29 @@ class MainActivity : AppCompatActivity() {
            Toast.makeText(applicationContext,"name or goals cannot be blank and position must be selected",Toast.LENGTH_LONG).show()
        }
    }
+
+    //method for read records from database in ListView
+    fun viewRecord(view: View){
+        //creating the instance of DatabaseHandler class
+        val databaseHandler: DatabaseHandler= DatabaseHandler(this)
+        //calling the viewEmployee method of DatabaseHandler class to read the records
+        val player: List<PlayerModelClass> = databaseHandler.viewPlayer()
+        val playerArrayId = Array<String>(player.size){"0"}
+        val playerArrayName = Array<String>(player.size){"null"}
+        val playerArrayPosition = Array<String>(player.size){"null"}
+        val playerArrayGoals = Array<String>(player.size){"0"}
+
+        var index = 0
+        for(e in player){
+            playerArrayId[index] = e.playerId.toString()
+            playerArrayName[index] = e.playerName
+            playerArrayPosition[index] = e.playerPosition
+            playerArrayGoals[index] = e.playerGoals.toString()
+            index++
+        }
+        //creating custom ArrayAdapter
+        val myListAdapter = MyListAdapter(this,playerArrayId,playerArrayName,playerArrayPosition, playerArrayGoals)
+        listView.adapter = myListAdapter
+    }
 
 }

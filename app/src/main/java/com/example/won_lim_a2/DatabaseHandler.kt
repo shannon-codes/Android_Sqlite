@@ -4,6 +4,11 @@ import android.content.ContentValues
 import android.content.Context
 import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
+import android.database.Cursor
+
+import android.database.sqlite.SQLiteException
+
+
 
 class DatabaseHandler (context: Context) : SQLiteOpenHelper(context, DATABASE_NAME, null, DATABASE_VERSION){
 
@@ -45,5 +50,42 @@ class DatabaseHandler (context: Context) : SQLiteOpenHelper(context, DATABASE_NA
 
         return success
     }
+
+    fun viewPlayer():List<PlayerModelClass>
+    {
+        val playerList:ArrayList<PlayerModelClass> = ArrayList<PlayerModelClass>()
+        val selectQuery = "SELECT  * FROM $TABLE_PLAYERS"
+        val db = this.readableDatabase
+
+        var cursor: Cursor? = null
+        try{
+            cursor = db.rawQuery(selectQuery, null)
+        }catch (e: SQLiteException) {
+            db.execSQL(selectQuery)
+            return ArrayList()
+        }
+
+        var playerId: Int
+        var playerName: String
+        var playerPosition: String
+        var playerGoals : Int
+
+        if (cursor.moveToFirst()) {
+            do {
+                playerId = cursor.getInt(cursor.getColumnIndex("playerId"))
+                playerName = cursor.getString(cursor.getColumnIndex("playerName"))
+                playerPosition = cursor.getString(cursor.getColumnIndex("playerPosition"))
+                playerGoals = cursor.getInt(cursor.getColumnIndex("playerGoals"))
+
+                val player= PlayerModelClass(playerId = playerId, playerName = playerName,
+                        playerPosition = playerPosition, playerGoals = playerGoals)
+                playerList.add(player)
+            } while (cursor.moveToNext())
+        }
+        return playerList
+    }
+
+
+
 
 }
