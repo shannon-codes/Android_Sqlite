@@ -72,10 +72,10 @@ class DatabaseHandler (context: Context) : SQLiteOpenHelper(context, DATABASE_NA
 
         if (cursor.moveToFirst()) {
             do {
-                playerId = cursor.getInt(cursor.getColumnIndex("playerId"))
-                playerName = cursor.getString(cursor.getColumnIndex("playerName"))
-                playerPosition = cursor.getString(cursor.getColumnIndex("playerPosition"))
-                playerGoals = cursor.getInt(cursor.getColumnIndex("playerGoals"))
+                playerId = cursor.getInt(cursor.getColumnIndex("id"))
+                playerName = cursor.getString(cursor.getColumnIndex("name"))
+                playerPosition = cursor.getString(cursor.getColumnIndex("position"))
+                playerGoals = cursor.getInt(cursor.getColumnIndex("goals"))
 
                 val player= PlayerModelClass(playerId = playerId, playerName = playerName,
                         playerPosition = playerPosition, playerGoals = playerGoals)

@@ -22,9 +22,9 @@ class MyListAdapter (private val context: Activity, private val playerId: Array<
         val positionText = rowView.findViewById(R.id.positionTextView) as TextView
         val goalText = rowView.findViewById(R.id.goalTextView) as TextView
 
-        nameText.text = "Id: ${playerName[position]}"
-        positionText.text = "Name: ${playerPosition[position]}"
-        goalText.text = "Email: ${playerGoals[position]}"
+        nameText.text = "Name: ${playerName[position]}"
+        positionText.text = "Position: ${playerPosition[position]}"
+        goalText.text = "Goals: ${playerGoals[position]}"
         return rowView
     }
 }
